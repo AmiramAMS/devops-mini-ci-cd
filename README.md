@@ -1,120 +1,101 @@
-# Mini CI/CD Project – Docker & Nginx
+# DevOps Mini CI/CD Project – Docker & Nginx
 
-This project is part of a DevOps course lab and demonstrates a simple **CI/CD workflow** using Docker.
+This project was created as part of a DevOps course lab and demonstrates a simple CI/CD workflow using Docker.
 
-The goal is to build a custom **Nginx Docker image**, upload it to **DockerHub**, and deploy containers automatically using a **menu script**.
+The goal of this project is to build a custom Nginx Docker image, upload it to DockerHub, and deploy multiple containers automatically using a Bash menu script.
 
 ---
 
-# Project Workflow
+## Project Overview
 
-CI – Build and publish the Docker image  
-CD – Pull the image and deploy containers
+The project includes two main stages:
 
-Dockerfile
-↓
-docker build
-↓
-docker push (DockerHub)
-↓
-menu.sh
-↓
-docker pull
-↓
-deploy containers
+### Continuous Integration (CI)
 
-Continuous Integration (CI)
-1. Create a Dockerfile
+- Create a custom Docker image based on nginx
+- Modify the default index.html page
+- Build the Docker image
+- Test the container locally
+- Push the image to DockerHub
 
-The Dockerfile is based on the official nginx image.
+### Continuous Delivery (CD)
 
-FROM nginx:latest
+- Pull the image from DockerHub
+- Deploy containers using a menu script
+- Stop or remove containers
+- Access the running containers from a browser
 
-RUN rm /usr/share/nginx/html/index.html
-COPY index.html /usr/share/nginx/html/index.html
-2. Create a custom web page
+---
 
-index.html
+## Docker Image
 
-<html>
-<head>
-<title>DevOps Lab</title>
-</head>
+The image is based on the official nginx image and includes a custom HTML page.
 
-<body>
-<h1>Hello from my custom Nginx Docker Image</h1>
-<p>Mini CI/CD Project</p>
-</body>
+Build the image:
 
-</html>
-
-3. Build the Docker Image
 docker build -t amiram6/net4u_nginx .
 
-4. Run container and test HTTP
-docker run -d -p 8080:80 amiram6/net4u_nginx
+Push the image to DockerHub:
 
-Check service:
-
-curl localhost:8080
-
-5. Push image to DockerHub
-docker login
 docker push amiram6/net4u_nginx
-Continuous Delivery (CD)
 
-The deployment is controlled using a menu script.
+---
 
-The script allows:
+## Deploy Containers
 
-Pull image from DockerHub
-
-Deploy containers
-
-Stop containers
-
-Remove containers/images
+Containers are deployed using the menu script.
 
 Run the script:
 
-chmod +x menu.sh
+chmod +x menu.sh  
 ./menu.sh
-Deploy Containers
 
-Example deployment creates multiple containers from the same image:
+Example deployment of multiple containers:
 
-docker run -d -p 8081:80 amiram6/net4u_nginx
-docker run -d -p 8082:80 amiram6/net4u_nginx
+docker run -d -p 8081:80 amiram6/net4u_nginx  
+docker run -d -p 8082:80 amiram6/net4u_nginx  
 docker run -d -p 8083:80 amiram6/net4u_nginx
-Testing the Service
 
-Using curl:
+---
 
-curl localhost:8081
-curl localhost:8082
-curl localhost:8083
+## Service Test
 
-Or open in browser:
+After deploying the containers, the service can be tested using:
 
-http://SERVER_IP:8081
-http://SERVER_IP:8082
-http://SERVER_IP:8083
-Project Structure
-middle-lab-devops/
-│
-├── Dockerfile
-├── index.html
-├── menu.sh
-└── README.md
-Technologies Used
+curl localhost:8081  
+curl localhost:8082  
+curl localhost:8083  
 
-Docker
+Or from a browser:
 
-Nginx
+http://SERVER_IP:8081  
+http://SERVER_IP:8082  
+http://SERVER_IP:8083  
 
-Bash scripting
+---
 
-DockerHub
+## Project Structure
 
-GitHub
+devops-mini-ci-cd/
 
+Dockerfile  
+index.html  
+menu.sh  
+README.md  
+
+---
+
+## Technologies Used
+
+Docker  
+Nginx  
+Bash scripting  
+DockerHub  
+Git & GitHub  
+
+---
+
+## Author
+
+Amiram Amsalem  
+DevOps Course – Mini CI/CD Lab
