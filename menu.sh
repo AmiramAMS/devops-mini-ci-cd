@@ -50,7 +50,7 @@ break
 ;;
 
 *)
-echo "Invalid option!"
+echo "Invalid option"
 ;;
 
 esac
