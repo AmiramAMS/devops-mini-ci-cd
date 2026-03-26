@@ -7,7 +7,7 @@ echo "1) Pull image from DockerHub"
 echo "2) Run X Containers"
 echo "3) Remove image or container"
 echo "4) Stop container"
-echo "5) Exit"
+echo "5) Exit :) "
 
 read -p "Choose an option: " choice
 
